@@ -1,13 +1,5 @@
 package Runners;
 
-import com.lc1.LongestDuplicateSubstring;
-import com.lc1.StrongPasswordChecker;
-import com.lc1.SurroundedRegions;
-import com.lc1.DungeonGame;
-import com.lc1.HIndexII;
-import com.lc1.FindtheClosestPalindrome;
-import com.lc1.PermutationSequence;
-import com.lc1.FindCriticalandPseudoCriticalEdgesinMinimumSpanningTree;
 import com.lc1.*;
 
 import java.io.File;
@@ -22,11 +14,13 @@ public class Runner {
         //60. Permutation Sequence
         //permutationSequence();
         //65. Valid Number
-        validNumber();
+        //validNumber();
 //        //130
 //        surroundedRegionsRunner();
         //174 Dungeon Game
         //dungeonGame();
+        //222	Count Complete Tree Nodes   
+        countCompleteTreeNodes();
         //275 H-Index II
         //hIndex2();
         //420. Strong Password Checker
@@ -207,5 +201,42 @@ public class Runner {
         FindCriticalandPseudoCriticalEdgesinMinimumSpanningTree s = new FindCriticalandPseudoCriticalEdgesinMinimumSpanningTree();
         
     }
-
+    
+    // Function to insert nodes in level order 
+    public static TreeNode insertLevelOrder(int[] arr, TreeNode root,int i) 
+    { 
+        // Base case for recursion 
+        if (i < arr.length) { 
+            TreeNode temp = new TreeNode(arr[i]); 
+            root = temp; 
+  
+            // insert left child 
+            root.left = insertLevelOrder(arr, root.left, 
+                                             2 * i + 1); 
+  
+            // insert right child 
+            root.right = insertLevelOrder(arr, root.right, 
+                                               2 * i + 2); 
+        } 
+        return root; 
+    } 
+  
+    // Function to print tree nodes in InOrder fashion 
+    public static void inOrderPrinter(TreeNode root) 
+    { 
+        if (root != null) { 
+            inOrderPrinter(root.left); 
+            System.out.print(root.val + " "); 
+            inOrderPrinter(root.right); 
+        } 
+    } 
+    private static void countCompleteTreeNodes(){
+        CountCompleteTreeNodes s = new CountCompleteTreeNodes();
+        TreeNode t = new TreeNode();
+        int[] a = {1,2,3,4,5,6};
+        t = insertLevelOrder(a,t,0);
+        inOrderPrinter(t);
+        s.solution2(t);
+        
+    }
 }
