@@ -1,2 +1,2 @@
 # lc2
-leetcode playground with netbeans and maven
+just another leetcode playground
