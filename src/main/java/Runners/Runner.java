@@ -2,8 +2,14 @@ package Runners;
 
 import com.lc1.*;
 
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.*;
+import javax.json.spi.JsonProvider;
+import javax.json.stream.JsonParser;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -16,9 +22,11 @@ public class Runner {
         //65. Valid Number
         //validNumber();
         //96	Unique Binary Search Trees
-        uniqueBinarySearchTrees();
+        //uniqueBinarySearchTrees();
 //        //130
 //        surroundedRegionsRunner();
+        //149. Max Points on a Line
+        maxPointsonaLine();
         //174 Dungeon Game
         //dungeonGame();
         //222	Count Complete Tree Nodes   
@@ -241,5 +249,48 @@ public class Runner {
         UniqueBinarySearchTrees s =new UniqueBinarySearchTrees();
         System.out.println(s.numTrees(3));
 //        System.out.println(s.sol2(2));
+    }
+    private static void jsonExample(){
+        String personJSONData =
+                "  {" +
+                        "   \"name\": \"Jack\", " +
+                        "   \"age\" : 13, " +
+                        "   \"isMarried\" : false, " +
+                        "   \"address\": { " +
+                        "     \"street\": \"#1234, Main Street\", " +
+                        "     \"zipCode\": \"123456\" " +
+                        "   }, " +
+                        "   \"phoneNumbers\": [\"011-111-1111\", \"11-111-1111\"] " +
+                        " }";
+
+        JsonReader reader = Json.createReader(new StringReader(personJSONData));
+
+        JsonObject personObject = reader.readObject();
+
+        reader.close();
+
+        System.out.println("Name   : " + personObject.getString("name"));
+        System.out.println("Age    : " + personObject.getInt("age"));
+        System.out.println("Married: " + personObject.getBoolean("isMarried"));
+
+        JsonObject addressObject = personObject.getJsonObject("address");
+        System.out.println("Address: ");
+        System.out.println(addressObject.getString("street"));
+        System.out.println(addressObject.getString("zipCode"));
+
+        System.out.println("Phone  : ");
+        JsonArray phoneNumbersArray = personObject.getJsonArray("phoneNumbers");
+        for (JsonValue jsonValue : phoneNumbersArray) {
+            System.out.println(jsonValue.toString());
+        }
+    }
+    private static void maxPointsonaLine(){
+        jsonExample();
+        StringReader r = new StringReader("{\"a\":[[1,1],[2,2],[3,3]]}");
+        JsonReader p = Json.createReader(r);
+        JsonObject o = p.readObject();
+        JsonArray a = o.getJsonArray("a");
+        for(JsonValue v: a) System.out.println(v);
+
     }
 }
