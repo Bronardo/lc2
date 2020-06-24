@@ -15,12 +15,14 @@ public class Runner {
         //permutationSequence();
         //65. Valid Number
         //validNumber();
+        //96	Unique Binary Search Trees
+        uniqueBinarySearchTrees();
 //        //130
 //        surroundedRegionsRunner();
         //174 Dungeon Game
         //dungeonGame();
         //222	Count Complete Tree Nodes   
-        countCompleteTreeNodes();
+        //countCompleteTreeNodes();
         //275 H-Index II
         //hIndex2();
         //420. Strong Password Checker
@@ -203,8 +205,7 @@ public class Runner {
     }
     
     // Function to insert nodes in level order 
-    public static TreeNode insertLevelOrder(int[] arr, TreeNode root,int i) 
-    { 
+    public static TreeNode insertLevelOrder(int[] arr, TreeNode root,int i){
         // Base case for recursion 
         if (i < arr.length) { 
             TreeNode temp = new TreeNode(arr[i]); 
@@ -219,11 +220,9 @@ public class Runner {
                                                2 * i + 2); 
         } 
         return root; 
-    } 
-  
+    }
     // Function to print tree nodes in InOrder fashion 
-    public static void inOrderPrinter(TreeNode root) 
-    { 
+    public static void inOrderPrinter(TreeNode root){
         if (root != null) { 
             inOrderPrinter(root.left); 
             System.out.print(root.val + " "); 
@@ -237,6 +236,10 @@ public class Runner {
         t = insertLevelOrder(a,t,0);
         inOrderPrinter(t);
         s.solution2(t);
-        
+    }
+    private static void uniqueBinarySearchTrees(){
+        UniqueBinarySearchTrees s =new UniqueBinarySearchTrees();
+        System.out.println(s.numTrees(3));
+//        System.out.println(s.sol2(2));
     }
 }
