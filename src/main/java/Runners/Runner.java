@@ -24,13 +24,15 @@ public class Runner {
 //        //130
 //        surroundedRegionsRunner();
         //149. Max Points on a Line
-        maxPointsonaLine();
+        //maxPointsonaLine();
         //174 Dungeon Game
         //dungeonGame();
         //222	Count Complete Tree Nodes   
         //countCompleteTreeNodes();
         //275 H-Index II
         //hIndex2();
+        //287. Find the Duplicate Number
+        findtheDuplicateNumber();
         //420. Strong Password Checker
         //strongPasswordChecker();
         //564 Find the Closest Palindrome
@@ -98,6 +100,13 @@ public class Runner {
 //        System.out.println(f.hashCode());
 
     }
+
+    private static void findtheDuplicateNumber() {
+        FindtheDuplicateNumber s = new FindtheDuplicateNumber();
+        int[] in = {1,3,4,2,2};
+        System.out.println(s.findDuplicate(in));
+    }
+
     private static Object fileReaderArray(String url, int mode){
         //mode:1.Array, 2. 2d Array
         String line ="";
