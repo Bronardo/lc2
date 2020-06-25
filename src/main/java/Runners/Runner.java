@@ -7,9 +7,7 @@ import javax.json.JsonObject;
 import javax.json.*;
 import javax.json.spi.JsonProvider;
 import javax.json.stream.JsonParser;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.StringReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -284,13 +282,58 @@ public class Runner {
             System.out.println(jsonValue.toString());
         }
     }
-    private static void maxPointsonaLine(){
-        jsonExample();
-        StringReader r = new StringReader("{\"a\":[[1,1],[2,2],[3,3]]}");
-        JsonReader p = Json.createReader(r);
-        JsonObject o = p.readObject();
-        JsonArray a = o.getJsonArray("a");
-        for(JsonValue v: a) System.out.println(v);
+    private static JsonObject jsonFromFile(String url){
+        JsonObject o;
+        try {
+            FileReader f = new FileReader(url);
+            return Json.createReader(f).readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private static void fileExample(){
+        File f= new File(".");
+        System.out.println(f.getAbsolutePath());
+    }
+    private static Object jsonToArray(JsonArray jo,int mode){
+        //modes: 1. 1D array 2. 2D array
+        switch(mode){
+            case 1:
+                int[] a = new int[jo.size()];
+                for(int i=0;i<a.length;i++){
+                    a[i] = jo.getInt(i);
+                }
+                return a;
+            case 2:
+                int[][] b = new int[jo.size()][];
+                for(int i=0;i<b.length;i++){
+                    b[i]  = new int[jo.getJsonArray(i).size()];
+                    for(int j=0;j<b[i].length;j++){
+                        b[i][j] = jo.getJsonArray(i).getInt(j);
+                    }
+                }
+                return b;
+        }
 
+        return null;
+    }
+    private static void maxPointsonaLine(){
+//        jsonExample();
+//        fileExample();
+//        StringReader r = new StringReader("{\"a\":[[1,1],[2,2],[3,3]]}");
+//        JsonReader p = Json.createReader(r);
+//        JsonObject o = p.readObject();
+//        JsonArray a = o.getJsonArray("a");
+//        for(JsonValue v: a) System.out.println(v);
+        JsonObject o2 = jsonFromFile("src/main/java/resrc/in1.json");
+        JsonArray a2= o2.getJsonArray("a");
+        for(JsonValue v: a2) System.out.println(v);
+        int[][] a = (int[][])jsonToArray(a2,2);
+        MaxPointsonaLine s = new MaxPointsonaLine();
+//        System.out.println(s.maxPoints(a));
+//        System.out.println(s.sol2(a));
+//        System.out.println(s.sol3(a));
+        System.out.println(s.sol4(a));
     }
 }
