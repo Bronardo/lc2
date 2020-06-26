@@ -21,6 +21,8 @@ public class Runner {
         //validNumber();
         //96	Unique Binary Search Trees
         //uniqueBinarySearchTrees();
+        //126. Word Ladder II need to be fixded
+        wordLadderII();
 //        //130
 //        surroundedRegionsRunner();
         //149. Max Points on a Line
@@ -32,7 +34,7 @@ public class Runner {
         //275 H-Index II
         //hIndex2();
         //287. Find the Duplicate Number
-        findtheDuplicateNumber();
+        //findtheDuplicateNumber();
         //420. Strong Password Checker
         //strongPasswordChecker();
         //564 Find the Closest Palindrome
@@ -344,5 +346,12 @@ public class Runner {
 //        System.out.println(s.sol2(a));
 //        System.out.println(s.sol3(a));
         System.out.println(s.sol4(a));
+    }
+    private static void wordLadderII(){
+        WordLadderII s = new WordLadderII();
+        String a ="lit";
+        String b ="bit";
+        System.out.println(s.is1CharDiff(a,b));
+
     }
 }
