@@ -24,7 +24,7 @@ public class Runner {
         //126. Word Ladder II need to be fixded
 //        wordLadderII();
         //129. Sum Root to Leaf Numbers
-        sumRoottoLeafNumbers();
+//        sumRoottoLeafNumbers();
 //        //130
 //        surroundedRegionsRunner();
         //149. Max Points on a Line
@@ -35,6 +35,8 @@ public class Runner {
         //countCompleteTreeNodes();
         //275 H-Index II
         //hIndex2();
+        //279. Perfect Squares
+        perfectSquares();
         //287. Find the Duplicate Number
         //findtheDuplicateNumber();
         //420. Strong Password Checker
@@ -358,5 +360,8 @@ public class Runner {
     }
     private static void sumRoottoLeafNumbers(){
 
+    }
+    private static void perfectSquares(){
+        PerfectSquares s = new PerfectSquares();
     }
 }
