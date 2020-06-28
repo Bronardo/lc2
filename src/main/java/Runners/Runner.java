@@ -8,10 +8,7 @@ import javax.json.*;
 import javax.json.spi.JsonProvider;
 import javax.json.stream.JsonParser;
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.util.*;
 
 public class Runner {
     public static void main(String[] args){
@@ -36,9 +33,11 @@ public class Runner {
         //275 H-Index II
         //hIndex2();
         //279. Perfect Squares
-        perfectSquares();
+        //perfectSquares();
         //287. Find the Duplicate Number
         //findtheDuplicateNumber();
+        //332. Reconstruct Itinerary
+        reconstructItinerary();
         //420. Strong Password Checker
         //strongPasswordChecker();
         //564 Find the Closest Palindrome
@@ -363,5 +362,21 @@ public class Runner {
     }
     private static void perfectSquares(){
         PerfectSquares s = new PerfectSquares();
+    }
+    private static void reconstructItinerary(){
+        ReconstructItinerary s =new ReconstructItinerary();
+        //[["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
+        List<List<String>> in = new LinkedList<>();
+        String[] a = {"JFK","SFO"};
+        String[] b = {"JFK","ATL"};
+        String[] c = {"SFO","ATL"};
+        String[] d = {"ATL","JFK"};
+        String[] e = {"ATL","SFO"};
+        in.add(Arrays.asList(a));
+        in.add(Arrays.asList(b));
+        in.add(Arrays.asList(c));
+        in.add(Arrays.asList(d));
+        in.add(Arrays.asList(e));
+        System.out.println(s.findItinerary(in));
     }
 }
