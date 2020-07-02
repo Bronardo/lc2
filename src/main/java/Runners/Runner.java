@@ -14,6 +14,8 @@ public class Runner {
     public static void main(String[] args){
         //60. Permutation Sequence
         //permutationSequence();
+        //62. Unique Paths
+        uniquePaths();
         //65. Valid Number
         //validNumber();
         //96	Unique Binary Search Trees
@@ -37,7 +39,7 @@ public class Runner {
         //287. Find the Duplicate Number
         //findtheDuplicateNumber();
         //332. Reconstruct Itinerary
-        reconstructItinerary();
+        //reconstructItinerary();
         //420. Strong Password Checker
         //strongPasswordChecker();
         //564 Find the Closest Palindrome
@@ -378,5 +380,11 @@ public class Runner {
         in.add(Arrays.asList(d));
         in.add(Arrays.asList(e));
         System.out.println(s.findItinerary(in));
+    }
+    private static void uniquePaths(){
+        UniquePaths s = new UniquePaths();
+//        System.out.println(s.uniquePaths(10,10));
+//        System.out.println(s.uniquePaths2(10,10));
+        System.out.println(s.uniquePaths3(51,9));
     }
 }
