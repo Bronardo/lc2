@@ -8,14 +8,16 @@ import javax.json.*;
 import javax.json.spi.JsonProvider;
 import javax.json.stream.JsonParser;
 import java.io.*;
+import java.sql.Time;
 import java.util.*;
 
 public class Runner {
     public static void main(String[] args){
+        long t0  = System.currentTimeMillis();
         //60. Permutation Sequence
         //permutationSequence();
         //62. Unique Paths
-        uniquePaths();
+//        uniquePaths();
         //65. Valid Number
         //validNumber();
         //96	Unique Binary Search Trees
@@ -30,8 +32,12 @@ public class Runner {
         //maxPointsonaLine();
         //174 Dungeon Game
         //dungeonGame();
+        //212. Word Search II
+//        wordSearchII();
         //222	Count Complete Tree Nodes   
         //countCompleteTreeNodes();
+        //263. Ugly Number
+        uglyNumber();
         //275 H-Index II
         //hIndex2();
         //279. Perfect Squares
@@ -46,66 +52,13 @@ public class Runner {
         //findClosestPalindrom();
         //787 Cheapest Flights Within K Stops
         //CheapestFlightsWithinKStops787 solve = new CheapestFlightsWithinKStops787();
+        //957. Prison Cells After N Days
+//        prisonCellsAfterNDays();
         //1044	Longest Duplicate Substring
         //longestDuplicateSubstring();
         //1489. Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree
 
-        /*
-        int n = 3;
-        int[][] edges = {{0,1,100},{1,2,100},{0,2,500}};
-        int src = 0;
-        int dst = 2;
-        int k = 0;
-     */
-//
-//        int n = 4;
-//        int[][] edges = {{0,1,1},{0,2,5},{1,2,1},{2,3,1}};
-//        int src = 0;
-//        int dst = 3;
-//        int k = 1;
-/*
-        int n = 3;
-        int[][] edges = {{0,1,100},{1,2,100},{0,2,500}};
-        int src = 0;
-        int dst = 2;
-        int k = 0;
-*/
-
-       // System.out.println(solve.solution1(n, edges, src,  dst,  k));
-        //System.out.println(solve.solution2(n, edges, src,  dst,  k));
-        //System.out.println(solve.solution4(n, edges, src,  dst,  k));
-/*
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[2]));
-        for(int[] i: edges){
-            pq.add(i);
-        }
-        while(pq.peek()!=null){
-            System.out.println(Arrays.toString(pq.poll()));
-        }
-    */
-//        int[] A = {-4,-1,0,3,10};
-//        int[] temp  = new int[A.length];
-//        for(int i=0;i<A.length;i++){
-//            temp[i] = (int)Math.pow(A[i],2);
-//        }
-//        Arrays.sort((temp));
-//        System.out.println( temp.toString());
-//        String s = "1..1.1.1";
-//        ValidateIPAddress val = new ValidateIPAddress();
-//        System.out.println(val.validIPAddress(s));
-//        int a=4;
-//        int b  = a%2 ==0? 1:2;
-//        System.out.println(b);
-//        String c = "a";
-//        c= c+b+b+Integer.parseInt("1");
-//        System.out.println(c+b);
-//        char d = '3';
-//        System.out.println((c+b).indexOf(d));
-//        String e ="hello";
-//        String f = e;
-//        System.out.println(e.hashCode());
-//        System.out.println(f.hashCode());
-
+        System.out.println(System.currentTimeMillis()-t0+"ms");
     }
 
     private static void findtheDuplicateNumber() {
@@ -312,8 +265,17 @@ public class Runner {
         File f= new File(".");
         System.out.println(f.getAbsolutePath());
     }
+    /**
+     * modes:
+     * 1. 1D array
+     * 2. 2D array
+     * 3. 1D String
+     * 4. 2D String
+     * 5. 1D char
+     * 6. 2D char
+     */
     private static Object jsonToArray(JsonArray jo,int mode){
-        //modes: 1. 1D array 2. 2D array
+        //modes: 1. 1D array 2. 2D array 3.1D String 4.2D String
         switch(mode){
             case 1:
                 int[] a = new int[jo.size()];
@@ -330,8 +292,37 @@ public class Runner {
                     }
                 }
                 return b;
+            case 3:
+                String[] c = new String[jo.size()];
+                for(int i=0;i<c.length;i++){
+                    c[i] = jo.getString(i);
+                }
+                return c;
+            case 4:
+                String[][] d = new String[jo.size()][];
+                for(int i=0;i<d.length;i++){
+                    d[i]  = new String[jo.getJsonArray(i).size()];
+                    for(int j=0;j<d[i].length;j++){
+                        d[i][j] = jo.getJsonArray(i).getString(j);
+                    }
+                }
+                return d;
+            case 5:
+                char[] e = new char[jo.size()];
+                for(int i=0;i<e.length;i++){
+                    e[i] = jo.getString(i).charAt(0);
+                }
+                return e;
+            case 6:
+                char[][] f = new char[jo.size()][];
+                for(int i=0;i<f.length;i++){
+                    f[i]  = new char[jo.getJsonArray(i).size()];
+                    for(int j=0;j<f[i].length;j++){
+                        f[i][j] = jo.getJsonArray(i).getString(j).charAt(0);
+                    }
+                }
+                return f;
         }
-
         return null;
     }
     private static void maxPointsonaLine(){
@@ -386,5 +377,30 @@ public class Runner {
 //        System.out.println(s.uniquePaths(10,10));
 //        System.out.println(s.uniquePaths2(10,10));
         System.out.println(s.uniquePaths3(51,9));
+    }
+    private static void wordSearchII(){
+        JsonObject o2 = jsonFromFile("src/main/java/resrc/wordSearchII.json");
+        JsonArray b= o2.getJsonArray("board");
+        JsonArray w= o2.getJsonArray("words");
+        for(JsonValue v: b) System.out.println(v);
+//        for(JsonValue v: w) System.out.println(v);
+        char[][] board = (char[][])jsonToArray(b,6);
+        String[] words = (String[])jsonToArray(w,3);
+        WordSearchII s = new WordSearchII();
+        System.out.println(s.findWords(board,words));       ;
+
+    }
+    private  static void prisonCellsAfterNDays(){
+
+        PrisonCellsAfterNDays s= new PrisonCellsAfterNDays();
+        int[] a = {0,1,0,1,1,0,0,1};
+        int b =2000000000;
+        int c =1000000000;
+        System.out.println(Arrays.toString(s.prisonAfterNDays(a,c)));
+    }
+    private static void uglyNumber(){
+        UglyNumber s = new UglyNumber();
+        System.out.println(s.nthUglyNumber(1691));
+
     }
 }
