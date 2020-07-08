@@ -24,7 +24,7 @@ public class WordLadderII {
             }
             String current = path.get(path.size()-1);
             for(String s:wordList){
-                if(is1CharDiff(current,s)){
+                if(is1CharDiff2(current,s)){
                     if(wordList.indexOf(s)!=wordList.size()-1){
                         List<String> newPath = new LinkedList<>(path);
                         newPath.add(s);
@@ -48,5 +48,13 @@ public class WordLadderII {
             if(b.matches(aRegex)) return true;
         }
         return false;
+    }
+    public boolean is1CharDiff2(String a, String b){
+        int c = 0;
+        for(int i=0;i<a.length();i++){
+            if(a.charAt(i)!=b.charAt(i)) c++;
+            if(c>1) return false;
+        }
+        return c==1;
     }
 }

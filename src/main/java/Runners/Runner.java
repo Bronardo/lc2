@@ -5,10 +5,7 @@ import com.lc1.*;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.*;
-import javax.json.spi.JsonProvider;
-import javax.json.stream.JsonParser;
 import java.io.*;
-import java.sql.Time;
 import java.util.*;
 
 public class Runner {
@@ -20,10 +17,12 @@ public class Runner {
 //        uniquePaths();
         //65. Valid Number
         //validNumber();
+        //66. Plus One
+//        plusOne();
         //96	Unique Binary Search Trees
         //uniqueBinarySearchTrees();
-        //126. Word Ladder II need to be fixded
-//        wordLadderII();
+//        126. Word Ladder II need to be fixded
+        wordLadderII();
         //129. Sum Root to Leaf Numbers
 //        sumRoottoLeafNumbers();
 //        //130
@@ -37,7 +36,7 @@ public class Runner {
         //222	Count Complete Tree Nodes   
         //countCompleteTreeNodes();
         //263. Ugly Number
-        uglyNumber();
+//        uglyNumber();
         //275 H-Index II
         //hIndex2();
         //279. Perfect Squares
@@ -345,9 +344,15 @@ public class Runner {
     }
     private static void wordLadderII(){
         WordLadderII s = new WordLadderII();
-        String a ="lit";
-        String b ="bit";
-        System.out.println(s.is1CharDiff(a,b));
+//        String a ="lit";
+//        String b ="bit";
+//        System.out.println(s.is1CharDiff(a,b));
+        JsonObject o = jsonFromFile("src/main/java/resrc/wordLadderII.json");
+        String a= o.getString("a");
+        String b= o.getString("b");
+        JsonArray c= o.getJsonArray("c");
+        String[] set  =(String[])jsonToArray(c,3);
+        System.out.println(s.findLadders(a,b,new LinkedList<>(Arrays.asList(set))));
 
     }
     private static void sumRoottoLeafNumbers(){
@@ -402,5 +407,10 @@ public class Runner {
         UglyNumber s = new UglyNumber();
         System.out.println(s.nthUglyNumber(1691));
 
+    }
+    private static void plusOne(){
+        PlusOne s = new PlusOne();
+        int[] in = {1,2,3};
+        System.out.println(Arrays.toString(s.plusOne(in)));
     }
 }
